@@ -1,0 +1,44 @@
+﻿@page
+@model Feedback.Pages.FeedbackModel
+
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+<h1>Feedback</h1>
+
+<h4>Credits</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Credits.Created" class="control-label"></label>
+                <input asp-for="Credits.Created" type="hidden" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+                <span asp-validation-for="Credits.Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Credits.Value" class="control-label"></label>
+                <input asp-for="Credits.Value" value="1" min="1" max="5" class="form-control" />
+                <span asp-validation-for="Credits.Value" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Credits.Success" /> @Html.DisplayNameFor(model => model.Credits.Success)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
